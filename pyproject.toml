@@ -2,7 +2,7 @@
 name = "jobsim"
 version = "1.2.6"
 description = "job manager simulator"
-authors = ["Lukasz Loboda <uoboda@splunk.com>, Kamil Kania <kkania@splunk.com>"]
+authors = ["Lukasz Loboda <uoboda@splunk.com>"]
 license = "Apache-2.0"
 readme = "README.md"
 
