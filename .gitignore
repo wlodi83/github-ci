@@ -1,0 +1,4 @@
+jobsim/__pycache__/
+tests/large/__pycache__/
+tests/small/__pycache__/
+small_tests_results.xml
