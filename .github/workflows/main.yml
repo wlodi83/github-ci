@@ -29,11 +29,17 @@ jobs:
           poetry install
 
       - name: run small-tests
-        run: poetry run pytest -s -v tests/small
+        run: python -m pytest -v --junitxml=small_tests_results.xml tests/small
+
+  upload-artifacts:
+    - uses: actions/upload-artifact@v3
+      with:
+        name: junit-logs
+        path: small_tests_results.xml
 
   large-tests:
     runs-on: ubuntu-latest
-    needs: small-tests
+    needs: [small-tests, upload-artifacts]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -49,7 +55,7 @@ jobs:
   report_workflow:
     if: always()
     runs-on: ubuntu-latest
-    needs: [pre-commit, small-tests, large-tests]
+    needs: [pre-commit, small-tests, upload-artifacts, large-tests]
     steps:
       - uses: uoboda-splunk/workflow-info-splunk-upload-action@v1
         with:
