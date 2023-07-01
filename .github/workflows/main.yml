@@ -44,6 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [ "3.9", "3.10", "3.11" ]
+        # add type here!!! ["small", "large"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -56,7 +57,7 @@ jobs:
       - name: run large-tests-${{ matrix.version }}
         run: poetry run pytest -v --junitxml=large_tests_results_${{ matrix.version }}.xml tests/large
       - uses: actions/upload-artifact@v3
-        if: success()
+        if: success() || failure()
         with:
           name: junit-logs-${{ matrix.version }}
           path: large_tests_results_${{ matrix.version }}.xml
