@@ -53,6 +53,7 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
           poetry install
       - name: run large-tests-${{ matrix.version }}
+        if: always()
         run: poetry run pytest -v --junitxml=large_tests_results_${{ matrix.version }}.xml tests/large
       - uses: actions/upload-artifact@v3
         if: success()
