@@ -39,7 +39,7 @@ jobs:
 
   large-tests:
     runs-on: ubuntu-latest
-    needs: [small-tests, upload-artifacts]
+    needs: [small-tests]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -55,7 +55,7 @@ jobs:
   report_workflow:
     if: always()
     runs-on: ubuntu-latest
-    needs: [pre-commit, small-tests, upload-artifacts, large-tests]
+    needs: [pre-commit, small-tests, large-tests]
     steps:
       - uses: uoboda-splunk/workflow-info-splunk-upload-action@v1
         with:
