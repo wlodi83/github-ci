@@ -32,14 +32,6 @@ jobs:
           poetry install
       - name: run small-tests
         run: poetry run pytest -v --junitxml=small_tests_results_${{ matrix.version }}.xml tests/small
-
-  upload-artifacts:
-    runs-on: ubuntu-latest
-    needs: small-tests
-    strategy:
-      matrix:
-        version: [ "3.9", "3.10", "3.11" ]
-    steps:
       - uses: actions/upload-artifact@v3
         with:
           name: junit-logs-${{ matrix.version }}
