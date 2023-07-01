@@ -70,6 +70,10 @@ jobs:
         with:
           submodules: false
           persist-credentials: false
+      - name: Install jobsim
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry install
       - name: Semantic release
         id: semantic
         uses: splunk/semantic-release-action@v1.3
