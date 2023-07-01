@@ -32,10 +32,13 @@ jobs:
         run: python -m pytest -v --junitxml=small_tests_results.xml tests/small
 
   upload-artifacts:
-    - uses: actions/upload-artifact@v3
-      with:
-        name: junit-logs
-        path: small_tests_results.xml
+    runs-on: ubuntu-latest
+    needs: small-tests
+    steps:
+      - uses: actions/upload-artifact@v3
+        with:
+          name: junit-logs
+          path: small_tests_results.xml
 
   large-tests:
     runs-on: ubuntu-latest
