@@ -37,7 +37,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: junit-logs
-          path: small_tests_results.xml
+          path: /small_tests_results.xml
 
   large-tests:
     runs-on: ubuntu-latest
