@@ -42,8 +42,8 @@ jobs:
     steps:
       - uses: actions/upload-artifact@v3
         with:
-          name: junit-logs
-          path: /home/runner/work/github-ci/github-ci/small_tests_results_${{ matrix.version }}.xml
+          name: junit-logs-${{ matrix.version }}
+          path: small_tests_results_${{ matrix.version }}.xml
 
   large-tests:
     runs-on: ubuntu-latest
